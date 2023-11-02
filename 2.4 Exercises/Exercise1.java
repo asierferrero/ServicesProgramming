@@ -19,7 +19,7 @@ class MyRunnable implements Runnable {
 
 public class Exercise1 {
     public static void main(String[] args) {
-        int num = 20; // Count of Fibonacci numbers
+        int num = 10; // Count of Fibonacci numbers
         MyRunnable myRunnable = new MyRunnable(num);
         Thread thread1 = new Thread(myRunnable);
 
