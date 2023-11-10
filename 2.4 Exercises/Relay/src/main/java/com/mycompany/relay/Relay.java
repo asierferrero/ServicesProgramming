@@ -25,11 +25,19 @@ public class Relay {
         System.out.println("All threads created.");
         System.out.println("Ready, set, go!");
 
-        for (Runner runner : runners) {
-            runner.start(); // Threads have to start running
-            runner.join(); // Waiting for thread to finish  
-            // Then passes the baton to another thread to start running
-        }
+        runners[1].start();
+        Thread.sleep(2000);
+        runners[2].start();
+        Thread.sleep(2000);
+        runners[3].start();
+        Thread.sleep(2000);
+        runners[4].start();
+        Thread.sleep(2000);
+
+        runners[1].join();
+        runners[2].join();
+        runners[3].join();
+        runners[4].join();
         // When the last thread finishes running, the parent thread will display a
         // message
         // indicating that all children have finished.
