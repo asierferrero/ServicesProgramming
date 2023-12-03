@@ -2,10 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package exercise1;
+package exercise2;
 
 import java.io.*;
 import java.net.*;
+
 /**
  *
  * @author asier
@@ -28,19 +29,16 @@ public class Server {
                 Socket clientSocket = serverSocket.accept();
                 System.out.println("Client connected from: " + clientSocket.getInetAddress());
             
-                // Create input and output streams for the client
                 InputStream inputStream = clientSocket.getInputStream();
-                OutputStream outputStream = clientSocket.getOutputStream();
             
-                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-                PrintWriter writer = new PrintWriter(outputStream, true);
+                DataInputStream dataInputStream = new DataInputStream(inputStream);
             
-                // Send the greeting to the client
-                writer.println("Hello client!");
+                // Receive the random number from client
+                int number = dataInputStream.readInt();
 
-                // Read the client's response
-                String clientMessage = reader.readLine();
-                System.out.println("Received from client: " + clientMessage);
+                // Make a operation with the number
+                int numberToSum = (int) (Math.random() * 100);
+                System.out.println("Sum result: " + number + " (client) + " + numberToSum + " (server) = " + (number + numberToSum));
             
                 // Close the client connection
                 clientSocket.close();

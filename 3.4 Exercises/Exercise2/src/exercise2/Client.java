@@ -2,11 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Other/File.java to edit this template
  */
-package exercise1;
+package exercise2;
 
 import java.io.*;
 import java.net.*;
-
 /**
  *
  * @author asier
@@ -19,19 +18,14 @@ public class Client {
 
         // Try to connect to the server
         try (Socket socket = new Socket(serverAddress, port)) {
-            // Create input and output streams for the server
-            InputStream inputStream = socket.getInputStream();
             OutputStream outputStream = socket.getOutputStream();
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-            PrintWriter writer = new PrintWriter(outputStream, true);
+            DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
 
-            // Receive and print the greeting from the server
-            String serverResponse = reader.readLine();
-            System.out.println("Server says: " + serverResponse);
-
-            // Send a message to the server
-            writer.println("Hello server!");
+            // Send a random number to the server
+            int number = (int) (Math.random() * 100);
+            dataOutputStream.writeInt(number);
+            dataOutputStream.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
