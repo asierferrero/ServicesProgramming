@@ -27,10 +27,7 @@ public class Client {
             byte[] nameData = clientName.getBytes();
             byte[] ageData = Integer.toString(clientAge).getBytes();
 
-            // Concatenate name and age data
             byte[] data = new byte[nameData.length + ageData.length];
-            System.arraycopy(nameData, 0, data, 0, nameData.length);
-            System.arraycopy(ageData, 0, data, nameData.length, ageData.length);
 
             // Send data to the server
             DatagramPacket packet = new DatagramPacket(data, data.length, serverAddress, serverPort);
