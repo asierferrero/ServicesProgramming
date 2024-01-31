@@ -26,12 +26,16 @@ public class Client {
             // Prepare data to send
             byte[] nameData = clientName.getBytes();
             byte[] ageData = Integer.toString(clientAge).getBytes();
-
-            byte[] data = new byte[nameData.length + ageData.length];
+            byte[] combinedData = new byte[nameData.length + ageData.length];
+            
+            System.arraycopy(nameData, 0, combinedData, 0, nameData.length);
+            System.arraycopy(ageData, 0, combinedData, nameData.length, ageData.length);
 
             // Send data to the server
-            DatagramPacket packet = new DatagramPacket(data, data.length, serverAddress, serverPort);
-            socket.send(packet);
+            DatagramPacket packet1 = new DatagramPacket(combinedData, combinedData.length, serverAddress, serverPort);
+            //DatagramPacket packet2 = new DatagramPacket(ageData, ageData.length, serverAddress, serverPort);
+            socket.send(packet1);
+            //socket.send(packet2);
 
             // Receive the response from the server
             byte[] buffer = new byte[1024];

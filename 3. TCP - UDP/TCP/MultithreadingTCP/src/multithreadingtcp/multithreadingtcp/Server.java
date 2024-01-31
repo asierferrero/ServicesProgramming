@@ -1,8 +1,9 @@
+package multithreadingtcp.multithreadingtcp;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package multithreadingtcp;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -22,14 +23,18 @@ public class Server {
         System.out.println("Server started on port " + port);
 
         try {
+            int numberToGuess = (int) (Math.random() * 100);
+            SharedResource gameState = new SharedResource(numberToGuess);
+            System.out.println("Number to guess: " + numberToGuess);
+
             while (clientCount < maxClients) {
                 Socket clientSocket = serverSocket.accept(); // Wait for a client to connect
-                Thread gameThread = new Thread(clientCount, clientSocket);
+                GameThread gameThread = new GameThread(clientCount, clientSocket, gameState);
                 gameThread.start(); // Start a new thread for each client
                 clientCount++;
             }
         } finally {
-            serverSocket.close();
+
         }
     }
 }

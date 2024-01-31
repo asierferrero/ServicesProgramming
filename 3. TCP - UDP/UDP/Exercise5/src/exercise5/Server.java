@@ -37,8 +37,8 @@ public class Server {
                 ObjectInputStream objectInputStream = new ObjectInputStream(byteInputStream);
                 Student student = (Student) objectInputStream.readObject();
 
-                // Display the received student object on the server side
-                System.out.println("Received Student from client:\n" + student);
+                // Assign an ID to the student (you can use any logic to generate or assign an ID)
+                student.setId(1);
 
                 // Serialize the student object
                 ByteArrayOutputStream byteOutputStream = new ByteArrayOutputStream();

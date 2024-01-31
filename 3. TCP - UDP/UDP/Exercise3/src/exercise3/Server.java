@@ -31,9 +31,9 @@ public class Server {
 
         String responseMessage;
         if (clientAge >= 18) {
-            responseMessage = String.format("%s, that is %d years old, you are of legal age.", clientName, clientAge);
+            responseMessage = String.format(clientName + ", that is " + clientAge + " years old, you are of legal age.");
         } else {
-            responseMessage = String.format("%s, that is %d years old, you are not of legal age.", clientName, clientAge);
+            responseMessage = String.format(clientName + ", that is " + clientAge + " years old, you are not of legal age.");
         }
 
         // Prepare response data

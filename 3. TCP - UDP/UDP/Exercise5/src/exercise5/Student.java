@@ -4,11 +4,13 @@
  */
 package exercise5;
 
+import java.io.Serializable;
+
 /**
  *
  * @author asier
  */
-public class Student {
+public class Student implements Serializable {
 
     /**
      * @param args the command line arguments
